@@ -1,0 +1,8 @@
+#!/usr/bin/env fancy
+
+require: "../lib/fpr"
+
+ConfigFile = __FILE__ relative_path: "../config/fpr.fy"
+*config* = File read_config: ConfigFile
+
+FPR run_with_config: *config*
