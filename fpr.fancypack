@@ -7,4 +7,5 @@ Fancy Package Specification new: "fpr" with: {
   homepage: "http://packages.fancy-lang.org/"
   version: "0.1.0"
   dependencies: [["bakkdoor/sinatra.fy"]]
+  ruby_dependencies: [["json"], ["puma"]]
 }
