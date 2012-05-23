@@ -1,5 +1,7 @@
 #!/usr/bin/env fancy
 
+require("rubygems")
+
 require: "../lib/fpr"
 
 ConfigFile = __FILE__ relative_path: "../config/fpr.fy"
