@@ -12,7 +12,7 @@ class FPR {
       enable: 'logging
     }
 
-    set: 'port to: $ *config*['port]
+    set: 'port to: $ conf['port]
     set: 'server to: "puma"
 
     require: "fpr/http_api"
