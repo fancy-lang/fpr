@@ -1,14 +1,7 @@
 get: "/" do: {
-  with_json_response: {
+  with_json_response: |p| {
     {
-      packages: [
-        {
-          name: "test"
-          version: "1.2.0"
-          description: "hello, world!"
-          dependencies: [1,2,3]
-        }
-      ]
+      packages: $ p get_packages
     }
   }
 }

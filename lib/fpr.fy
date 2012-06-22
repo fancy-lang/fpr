@@ -1,9 +1,12 @@
 class FPR
 
 require: "sinatra.fy"
+require: "redis.fy"
 
 require: "fpr/json"
 require: "fpr/api_helpers"
+require: "fpr/package"
+require: "fpr/packages"
 
 class FPR {
   def self run_with_config: conf {
