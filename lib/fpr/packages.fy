@@ -23,7 +23,7 @@ class FPR {
     def key: package_name version: version ('latest) {
       if: (version == 'latest) then: {
         with_redis: {
-          *redis* keys: "package:#{package_name}:*" . sort . last
+          *redis* keys: "package:#{package_name}:*" . sort . last || ""
         }
       } else: {
         "package:#{package_name}:#{version}"
