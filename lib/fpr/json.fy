@@ -31,3 +31,5 @@ class Hash {
 }
 
 JSON metaclass alias_method: 'parse: for_ruby: 'parse
+JSON metaclass alias_method: 'load: for_ruby: 'load
+JSON metaclass alias_method: 'dump: for_ruby: 'dump
