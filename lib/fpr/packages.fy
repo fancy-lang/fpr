@@ -36,7 +36,7 @@ class FPR {
       with_redis: {
         package_names . map: |name| {
           keys = *redis* keys: "package:#{name}:*" . map: |key| {
-            Package from_json: $ *redis* get: key
+            Fancy Package Specification from_json: $ *redis* get: key
           } . compact
         } . flatten
       }
@@ -49,7 +49,7 @@ class FPR {
     def package: package_name version: version ('latest) {
       with_redis: {
         json = *redis* get: $ key: package_name version: version
-        Package from_json: json
+        Fancy Package Specification from_json: json
       }
     }
 
@@ -71,24 +71,16 @@ class FPR {
       }
 
       content = Base64 decode64(json["content"])
-      spec = content eval
-      package = Package new: @{
-        name: $ spec package_name
-        version: $ spec version
-        description: $ spec description
-        dependencies: $ spec dependencies
-        ruby_dependencies: $ spec ruby_dependencies
-        repo_url: "https://github.com/#{package_name}"
-        author: $ spec author
-        email: $ spec email
-      }
+      package_spec = content eval
+      package_spec package_name: repo_name
+      package_spec gh_user: repo_user
 
       with_redis: {
         *redis* sadd: ('package_names, "#{package_name}")
-        *redis* set: ("package:#{package_name}:#{package version}", package for_json to_json)
+        *redis* set: ("package:#{package_name}:#{package_spec version}", package_spec for_json to_json)
       }
 
-      package
+      package_spec
     }
   }
 }
